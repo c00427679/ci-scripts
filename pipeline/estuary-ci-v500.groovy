@@ -124,7 +124,7 @@ node('ci-compile') {
     }
     stage ('Trigger Remote Job'){
     
-        build job: 'Estuary_Test_chenchun', parameters: [[$class: 'StringParameterValue', name: 'TREE_NAME', value:  "$TREE_NAME"], [$class: 'StringParameterValue', name: 'GIT_DESCRIBE', value: "$GIT_DESCRIBE"]], wait: false
+        build job: 'remote-erp-test-liuchunfeng', parameters: [[$class: 'StringParameterValue', name: 'TREE_NAME', value:  "$TREE_NAME"], [$class: 'StringParameterValue', name: 'GIT_DESCRIBE', value: "$GIT_DESCRIBE"]], wait: false
     
     }
     def test_result = 0
