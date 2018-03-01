@@ -122,7 +122,11 @@ node('ci-compile') {
     stage ('Mirror Test Repo') {
         build job: 'step_mirror_test_repo_in_lava', parameters: [[$class: 'StringParameterValue', name: 'TEST_REPO', value: TEST_REPO]]
     }
-
+    stage ('Trigger Remote Job'){
+    
+        build job: 'Estuary_Test_chenchun', parameters: [[$class: 'StringParameterValue', name: 'TREE_NAME', value: "$TREE_NAME"], [$class: 'StringParameterValue', name: 'GIT_DESCRIBE', value: "$GIT_DESCRIBR"]], wait: false
+    
+    }
     def test_result = 0
     stage('Testing') {
         test_result = sh script: "./local/ci-scripts/test-scripts/jenkins_boot_start.sh -p env.properties 2>&1 " , returnStatus: true
